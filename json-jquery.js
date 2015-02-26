@@ -4,7 +4,7 @@ $(document).on('pagecreate','#pageone',function(){
   });
   $('#getdata-button').on("click",function(){
 	  alert('Called!');
-	  $.getJSON('json-data.php', function(data) {
+	  $.getJSON('http://mobile77.webatu.com/json-crud/json-data.php', function(data) {
 
             //alert(data); //uncomment this for debug
 
@@ -16,7 +16,7 @@ $(document).on('pagecreate','#pageone',function(){
   });
   $('#getAllProduct').on("click",function(){
 	  //alert('Get All Product');
-	  $.getJSON('get_all_products.php', function(dataAllProduct) {
+	  $.getJSON('http://mobile77.webatu.com/json-crud/get_all_products.php', function(dataAllProduct) {
 			
 			//alert(dataAllProduct); //uncomment this for debug
 			
@@ -56,7 +56,7 @@ $(document).on('pagecreate','#pageone',function(){
 	  // NO MORE the server side always set the value
 	  //success = null;
 			
-	  $.getJSON('get_product_details.php?pid='+productId, function(dataTheProduct) {
+	  $.getJSON('http://mobile77.webatu.com/json-crud/get_product_details.php?pid='+productId, function(dataTheProduct) {
 			
 			//alert(dataTheProduct); //uncomment this for debug
 			
@@ -104,7 +104,7 @@ $(document).on('pagecreate','#pageone',function(){
 	  // Post product
 	  $.post(
 	      //Specifies the url to send the request to
-		  "create_product.php",
+		  "http://mobile77.webatu.com/json-crud/create_product.php",
 		  
 		  //Specifies data to send to the server along with the request
 		  product,
