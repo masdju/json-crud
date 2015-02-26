@@ -1,0 +1,23 @@
+<?php
+    //read the json file contents
+    $jsondata = file_get_contents('empdetails.json');
+?>
+
+<?php
+    //convert json object to php associative array
+    $data = json_decode($jsondata, true);
+?>
+
+<?php
+    //get the employee details
+    $id = $data['empid'];
+    $name = $data['personal']['name'];
+    $gender = $data['personal']['gender'];
+    $age = $data['personal']['age'];
+    $streetaddress = $data['personal']['address']['streetaddress'];
+    $city = $data['personal']['address']['city'];
+    $state = $data['personal']['address']['state'];
+    $postalcode = $data['personal']['address']['postalcode'];
+    $designation = $data['profile']['designation'];
+    $department = $data['profile']['department'];
+?>

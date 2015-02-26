@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" " http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd ">
+
+<html xmlns=" http://www.w3.org/1999/xhtml ">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Request json test</title>
+
+<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="jquery.mobile-1.4.5.min.js"></script>
+
+<script src="json-jquery.js" type="text/javascript"></script>
+
+<script>
+$(document).ready(function(){
+    $("#testBtnShowTheProduct").click(function(){
+        $.get("get_product_details.php?pid=1", function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+			if (status == 'success') {
+				var i;
+    			var out = "<table>";
+				for(i = 0; i < data.product.length; i++) {
+					out += "<tr><td>" + 
+					data.product[i].name +
+					"</td><td>" +
+					data.product[i].price +
+					"</td><td>" +
+					data.product[i].created_at +
+					"</td></tr>";
+					out += "</table>";
+            		$('#testShowTheProduct').html(out);
+				}
+
+			}
+        });
+    });
+});
+</script>
+
+</head>
+
+<body>
+
+    <div data-role="page" id="pageone">
+      <div data-role="header">
+        <h1>Header Text</h1>
+      </div>
+    
+      <div role="main" class="ui-content">
+        <p>If you click on me, I will disappear.</p>
+        <p>Click me away!</p>
+        <p>Click me too!</p>
+        <a href="#" id="getdata-button">Get JSON Data</a>
+        <div id="showdata"></div>
+        <a href="#" id="getAllProduct">Get All Product</a>
+        <div id="showAllProduct"></div>
+        <a href="#popupEnterProductId" data-rel="popup" data-transition="pop" data-position-to="window" id="getTheProduct">Get The Product</a>
+        <div id="showTheProduct"></div>
+        <div data-role="popup" id="popupEnterProductId" data-theme="a" class="ui-corner-all">
+            <div style="padding:10px 20px;">
+                <label for="un" class="ui-hidden-accessible">Product Id:</label>
+                <input name="user" id="dfnProductID" value="" placeholder="Enter product ID" data-theme="a" type="text">
+                <button type="button" id="btnGetTheProduct" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Get The Product</button>
+            </div>
+        </div>
+        <a href="#popupCreateProduct" data-rel="popup" data-transition="pop" data-position-to="window" id="createProduct">Create Product</a>
+        <div id="showCreatedProduct"></div>
+        <div data-role="popup" id="popupCreateProduct" data-theme="a" class="ui-corner-all">
+            <div style="padding:10px 20px;">
+                <label for="un" class="ui-hidden-accessible">Name</label>
+                <input name="user" id="dfsProductName" value="" placeholder="Name" data-theme="a" type="text">
+                <label for="un" class="ui-hidden-accessible">Price</label>
+                <input name="user" id="dfnProductPrice" value="" placeholder="Price" data-theme="a" type="text">
+                <label for="un" class="ui-hidden-accessible">Description</label>
+                <input name="user" id="dfsProductDescription" value="" placeholder="Description" data-theme="a" type="text">
+                <button type="button" id="btnCreateProduct" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Create Product</button>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div>------------This is for testing purpose:------------</div>
+        <button id="testBtnShowTheProduct">Send an HTTP GET request to a page and get the result back using method $.get()</button> 	
+        <div id="testShowTheProduct"></div>
+        <!--
+        **KESIMPULAN**
+        - $.get() data return is the PAGE Content as plain text format.
+        - $.getJSON data return is the Page Content as data OBJECT (with JSON format), so can manipulated.
+        -->
+        <br/>
+        <br/>
+        <a href="#popupErrorMessage" data-rel="popup" data-transition="pop" data-position-to="window" id="getTheProduct">Test Error Message</a>
+        <div data-role="popup" id="popupErrorMessage" class="ui-content" style="max-width:280px" data-dismissible="false">
+            <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
+        <div id="strErrorMessage">This is error message</div>
+        </div>
+      </div>
+    
+      <div data-role="footer">
+        <h1>Footer Text</h1>
+      </div>
+    </div> 
+
+</body>
+
+</html>
