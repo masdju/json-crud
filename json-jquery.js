@@ -3,7 +3,7 @@ $(document).on('pagecreate','#pageone',function(){
     $(this).hide();
   });
   $('#getdata-button').on("click",function(){
-	  //alert('Called!');
+	  alert('Called!');
 	  $.getJSON('json-data.php', function(data) {
 
             //alert(data); //uncomment this for debug
